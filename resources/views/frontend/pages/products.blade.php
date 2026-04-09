@@ -62,11 +62,11 @@
                                 <a href="{{ route('product.show', $product->slug) }}" class="block">
                                     <article class="product-card bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 cursor-pointer group">
                                         <div class="aspect-square overflow-hidden bg-slate-100">
-                                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }} Google Voice/Gmail Account" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->product_name }} Google Voice/Gmail Account" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
                                         </div>
                                         <div class="p-4">
                                             <p class="text-xs text-indigo-600 font-medium uppercase tracking-wide mb-1">{{ $product->category->name ?? '' }}</p>
-                                            <h3 class="font-semibold text-slate-900 mb-1 truncate">{{ $product->name }}</h3>
+                                            <h3 class="font-semibold text-slate-900 mb-1 truncate">{{ $product->product_name }}</h3>
                                             <p class="text-slate-900 font-bold">${{ number_format($product->price, 2) }}</p>
                                         </div>
                                     </article>

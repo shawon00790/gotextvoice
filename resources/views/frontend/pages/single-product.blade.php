@@ -23,7 +23,7 @@
                         <!-- Gallery -->
                         <div>
                             <div class="aspect-square rounded-2xl overflow-hidden bg-white shadow-sm mb-4">
-                                <img id="product-main-image" src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&amp;auto=format&amp;fit=crop" alt="Meridian Lounge Chair" class="w-full h-full object-cover">
+                                <img id="product-main-image" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->product_name }}" class="w-full h-full object-cover">
                             </div>
                             
                         </div>
@@ -78,6 +78,10 @@
                                     </button>
                                 </form>
                             </div>
+                            <div>
+                                <h2 class="text-xl font-semibold text-slate-900 mb-3">Product Description</h2>
+                                <p class="text-slate-700">{{ $product->description }}</p>
+                            </div>
                         </div>
                     </div>
                     
@@ -88,7 +92,7 @@
                             @forelse ( $products as $product )
                                 <a href="{{ route('product.show', $product->slug) }}" class="block">
                                     <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
-                                        <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&amp;auto=format&amp;fit=crop" alt="{{ $product->product_name }}" class="w-full h-48 object-cover">
+                                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->product_name }}" class="w-full h-48 object-cover">
                                         <div class="p-4">
                                             <h3 class="text-lg font-medium text-slate-900 mb-2">{{ $product->product_name }}</h3>
                                             <p class="text-sm text-slate-600 mb-4">{{ $product->category->name }}</p>

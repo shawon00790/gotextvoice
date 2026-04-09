@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Feature;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class productController extends Controller
 {
@@ -101,12 +102,23 @@ class productController extends Controller
             'feature_name.*' => 'nullable|string',
         ]);
 
+
+
         // Image update
-        $imagePath = null;
         if ($request->hasFile('image')) {
+
+            // 👉 OLD IMAGE DELETE
+            if ($product->image && Storage::disk('public')->exists($product->image)) {
+                Storage::disk('public')->delete($product->image);
+            }
+
+            // 👉 NEW IMAGE UPLOAD
             $image = $request->file('image');
             $imageName = time() . '_' . Str::slug($request->product_name) . '.' . $image->getClientOriginalExtension();
             $imagePath = $image->storeAs('products', $imageName, 'public');
+
+            // 👉 SAVE NEW PATH
+            $product->image = $imagePath;
         }
 
         $product->update([
